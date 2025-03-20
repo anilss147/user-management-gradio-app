@@ -1,0 +1,2 @@
+gradio==3.35.2
+sqlite3  # Built-in module, no need to install separately
