@@ -1,96 +1,51 @@
-# User Management and Greeting Application
+# User Management and OTP Verification System
 
-This project is a Python-based web application built using the [Gradio](https://gradio.app/) library. It provides a user-friendly interface for managing users and greeting them. The application includes role-based access control for user management features.
+This project is a Python-based web application built using the [Gradio](https://gradio.app/) library. It provides a user-friendly interface for managing users, verifying OTPs via Telegram, and greeting users. The application includes role-based access control for user management features.
 
-## Features
+---
 
-1. **Login System**:
-    - Users can log in with a username and password.
-    - Role-based access control is implemented.
-    - Only the **Login** tab is visible until the user logs in successfully.
+## **Features**
 
-2. **User Management**:
-    - Add new users (only accessible to `superuser` role).
-    - Delete existing users (only accessible to `superuser` role).
-    - Edit user details (only accessible to `superuser` role).
+### **1. Login System**
+- Users can log in with a username and password.
+- Passwords are securely hashed using `bcrypt` before being stored in the database.
+- Only the **Login** tab is visible until the user logs in successfully.
 
-3. **Greeting**:
-    - A simple greeting feature where users can input their name and receive a personalized greeting.
+### **2. OTP Verification**
+- After logging in, users must verify their identity using a One-Time Password (OTP).
+- OTPs are sent to the user's Telegram account using a Telegram Bot.
+- The Telegram Bot is configured using the provided bot token.
 
-4. **Database**:
-    - SQLite is used to store user credentials and roles.
-    - Default users are created during initialization:
-      - `admin` (password: `lab`, role: `admin`)
-      - `superuser` (password: `superpass`, role: `superuser`)
-      - `operator` (password: `operpass`, role: `operator`)
+### **3. User Management**
+- Admins can manage users through the **User Management Tab**:
+  - Add new users with a username, password, role, and Telegram chat ID.
+  - Future functionality for editing and deleting users can be added.
+- Role-based access control can be implemented to restrict certain actions to specific roles (e.g., `admin`, `superuser`).
 
-5. **Dynamic Tab Visibility**:
-    - The **User Management** and **Greeting** tabs are hidden until the user logs in successfully.
+### **4. Greeting Tab**
+- Users can enter their name in the **Greeting Tab** to receive a personalized greeting.
 
-## Installation
+### **5. Database**
+- SQLite is used to store user credentials, roles, and Telegram chat IDs.
+- Default users are created during initialization:
+  - `admin` (password: `labAdmin1!`, role: `admin`)
+  - `superuser` (password: `SuperPass2@`, role: `superuser`)
+  - `operator` (password: `OperPass3#`, role: `operator`)
 
-1. Clone the repository or download the code.
-2. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. Run the application:
-    ```bash
-    python main.py
-    ```
+---
 
-## Usage
+## **Installation**
 
-### Login
-1. Open the application in your browser (it will launch automatically).
-2. Navigate to the **Login** tab.
-3. Enter your username and password to log in.
+### **1. Prerequisites**
+- Python 3.10 or higher
+- Required Python packages:
+  - `bcrypt`
+  - `gradio`
+  - `sqlite3` (built-in with Python)
+  - `requests`
 
-### User Management
-1. After logging in as a `superuser`, navigate to the **User Management** tab.
-2. Use the following features:
-    - **Add User**: Enter a new username, password, and role, then click "Add User".
-    - **Delete User**: Enter the username of the user to delete, then click "Delete User".
-    - **Edit User**: Enter the username, new password, and new role, then click "Edit User".
-
-### Greeting
-1. Navigate to the **Greeting** tab.
-2. Enter your name and receive a personalized greeting.
-
-## Role-Based Access Control
-
-- **Superuser**: Can add, delete, and edit users.
-- **Admin** and **Operator**: Can log in but cannot manage users.
-
-## File Structure
-
-- `main.py`: The main application file containing all the logic.
-- `db_file/users.db`: SQLite database file (created automatically on first run).
-- `requirements.txt`: File containing the required dependencies.
-
-## Security Notes
-
-- Passwords are stored in plain text in the database. For production use, consider hashing passwords using libraries like `bcrypt` or `hashlib`.
-- Input validation is implemented for usernames (only letters are allowed).
-
-## Dependencies
-
-- [Gradio](https://gradio.app/): For building the web interface.
-- SQLite: For database management.
-
-## Default Users
-
-| Username   | Password   | Role       |
-|------------|------------|------------|
-| admin      | lab        | admin      |
-| superuser  | superpass  | superuser  |
-| operator   | operpass   | operator   |
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-## Acknowledgments
-
-- [Gradio](https://gradio.app/) for providing an easy-to-use interface library.
-- SQLite for lightweight database management.
+### **2. Installation Steps**
+1. Clone the repository or download the source code:
+   ```bash
+   git clone https://github.com/anilss147/user-management-gradio-app.git
+   cd your-repository-name
